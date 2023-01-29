@@ -1,0 +1,36 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - ./data/pgdata:/var/lib/postgresql/data
+    networks:
+      - openolat
+
+  olat:
+    image: tomcat:9-jdk11
+    restart: always
+    environment:
+      - CATALINA_OPTS=-Ddb.name=${DB_NAME} -Ddb.user=${DB_USER} -Ddb.pass=${DB_PASS} -Duser.timezone=Europe/Berlin -Dspring.profiles.active=myprofile -Djava.awt.headless=true -Djava.net.preferIPv4Stack=true -XX:+HeapDumpOnOutOfMemoryError -XX:HeapDumpPath=.
+    volumes:
+      - ./openolat/openolat_${OLAT_VERSION}:/opt/openolat/webapp
+      - ./tomcat/server.xml:/usr/local/tomcat/conf/server.xml
+      - ./tomcat/context.xml:/usr/local/tomcat/conf/Catalina/localhost/ROOT.xml
+      - ./tomcat/olat.local.properties:/usr/local/tomcat/lib/olat.local.properties
+      - ./data/olatdata:/opt/openolat/olatdata
+    networks:
+      - openolat
+    ports:
+      - 127.0.0.1:${OLAT_PORT}:8088
+
+
+networks:
+  openolat:
+    driver: bridge
