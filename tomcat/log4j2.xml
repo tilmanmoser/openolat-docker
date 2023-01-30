@@ -30,6 +30,9 @@
        <Logger name="org.hibernate.type.descriptor.sql.BasicBinder" additivity="false" level="fatal">
            <AppenderRef ref="RollingFile" />
        </Logger>
+       <Logger name="org.olat.core.util.mail.manager.MailManagerImpl" additivity="false" level="debug">
+            <AppenderRef ref="RollingFile" />
+       </Logger>
        <Root level="info">
            <AppenderRef ref="RollingFile" />
        </Root>
