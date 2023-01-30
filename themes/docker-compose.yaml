@@ -1,0 +1,7 @@
+version: '3'
+
+services:
+  theme:
+    build: .
+    volumes:
+      - ./impavit:/opt/openolat/src/main/webapp/static/themes/impavit
