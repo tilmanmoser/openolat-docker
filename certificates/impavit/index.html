@@ -8,48 +8,25 @@
     body {
       padding: 0;
       margin: 0;
-      font-size: 1.2em;
+      font-size: 1em;
       font-family: Arial, Helvetica, sans-serif;
     }
 
     .page {
-      margin: 1cm;
+      margin: 0.5cm;
       box-sizing: content-box;
     }
 
-    .main {
-      display: flex;
-      align-items: flex-start;
-    }
-
-    .side {
-      width: 7cm;
-      display: flex;
-      flex-direction: column;
-      justify-items: center;
-      gap: 2em;
-    }
-
-    .issuer {
-      font-size: 0.8em;
-      text-align: right;
-      color: #000;
-    }
-
     .badge {
-      text-align: right;
+      text-align: center;
+      margin-bottom: 1cm;
     }
 
     .badge img {
-      width: 80%;
+      width: 3cm;
     }
 
     .content {
-      margin-left: 1cm;
-      padding-left: 1cm;
-      padding-right: 1cm;
-      border-left: 0.1cm solid #12a9de;
-      flex: 1;
       color: #333;
     }
 
@@ -59,7 +36,7 @@
     }
 
     .certification-title {
-      font-size: 3em;
+      font-size: 2em;
       font-weight: 100;
       margin: 0;
       padding: 0;
@@ -78,11 +55,22 @@
 
     .verification {
       display: flex;
-      gap: 1cm;
+      gap: 2cm;
       align-items: center;
-      margin-top: 1cm;
-      padding-top: 1cm;
-      border-top: 0.1cm solid #12a9de;
+      margin-top: 0.5cm;
+      padding-top: 0.5cm;
+      border-top: 0.05cm solid #12a9de;
+    }
+
+    .verification_details {
+      height: 25mm;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+    }
+
+    .verification_details p {
+      margin: 0;
     }
 
     .objective-heading {
@@ -107,7 +95,7 @@
     }
 
     .topics {
-      margin-top: 2cm;
+      margin-top: 1cm;
     }
 
     ul {
@@ -126,28 +114,18 @@
 
 <body class="page">
   <div class="main">
-    <div class="side">
+    <div class="content">
       <div class="badge">
         <img src="badge.png" />
       </div>
-      <div class="issuer">
-        IMPAVIT GmbH & Co. KG<br />
-        An der Kieskaute 27B<br />
-        55545 Bad Kreuznach<br />
-        Deutschland
+      <div style="text-align: center;">
+        <h1 class="blue certification-title">Teilnahmebescheinigung</h1>
+        <p class="small blue">Dieses Dokument bestätigt, dass</p>
+        <p class="name">$fullName</p>
+        <p class="small blue">erfolgreich teilnahm an</p>
+        <h1 class="blue certification-title">$title</h1>
+        <p class="small"><span>Zeitraum:</span> $from &mdash; $to </p>
       </div>
-      <div class="issuer">
-        www.impavit.com<br />
-        +49 (0)671 88678001
-      </div>
-    </div>
-    <div class="content">
-      <h1 class="blue certification-title">Teilnahmebescheinigung</h1>
-      <p class="small blue">Dieses Dokument bestätigt, dass</p>
-      <p class="name">$fullName</p>
-      <p class="small blue">erfolgreich teilnahm an</p>
-      <h1 class="blue certification-title">$title</h1>
-      <p class="small"><span>Zeitraum:</span> $from &mdash; $to </p>
 
       <div class="topics">
         <h2 class="objective-heading ">Beschreibung</h2>
@@ -159,18 +137,19 @@
         <p class="small">$objectives</p>
       </div>
 
-
       <div class="verification">
         <div class="o_qrcode">$certificateVerificationUrl</div>
         <div class="verification_details">
           <p class="small"><span>Aussteller:</span> $authors</p>
-          <p class="small"><span>Datum:</span> $dateCertifictation</p>
+          <p class="small"><span>Datum:</span> $dateCertification</p>
           <p class="small"><span>Verifikation:</span> <a
               href="$certificateVerificationUrl">$certificateVerificationUrl</a></p>
+          <p class="small blue">IMPAVIT GmbH & Co. KG - An der Kieskaute 27B - 55545 Bad Kreuznach - www.impavit.com</p>
         </div>
       </div>
-
     </div>
+
+
   </div>
 
 </body>
