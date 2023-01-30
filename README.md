@@ -6,7 +6,7 @@ Dockerized OpenOLAT instance with postgresql, athena-pdf and custom theme & cert
 **.env**
 ```
 # .env
-OLAT_PORT=8088
+NGINX_PORT=1234
 OLAT_VERSION=1717
 DB_HOST=db
 DB_PORT=5432
@@ -27,7 +27,7 @@ installation.dir=/opt/openolat
 log.dir=/opt/openolat/logs
 server.contextpath=/openolat
 server.domainname=localhost
-server.port=8088
+server.port=${NGINX_PORT}
 server.port.ssl=0
 smtp.host=disabled
 tomcat.id=1
@@ -40,4 +40,7 @@ userdata.dir=/opt/openolat/olatdata
 
 ## Run
 1. `docker compose up -d`
-2. Open http://localhost:8088
+2. http://localhost:${NGINX_PORT}
+
+## Troubleshoot
+Athena PDF does not work in local development - you must configure all services to run behind a proxy 
