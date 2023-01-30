@@ -16,10 +16,10 @@ DB_PASS=openolat
 ATHENA_SECRET=geheim
 ```
 
-**tomcat/openolat.local.properties**
+**tomcat/olat.local.properties**
 *Refer to `tomcat/openolat.properties` for all options*
 ```
-# tomcat/openolat.local.properties
+# tomcat/olat.local.properties
 db.source=jndi
 db.jndi=java:comp/env/jdbc/openolatDS
 db.vendor=postgresql
@@ -44,3 +44,22 @@ userdata.dir=/opt/openolat/olatdata
 
 ## Troubleshoot
 Athena PDF does not work in local development - you must configure all services to run behind a proxy 
+
+**Configure Office365 Mail**
+
+Goto Office365 Admin-Center > Acive Users > <User> > E-Mail > E-Mail-Apps and enable *Authenticated SMTP*
+
+Settings for `tomcat/olat.local.properties`:
+```
+# tomcat/olat.local.properties
+# ...
+smtp.host=smtp.office365.com
+smtp.port=587
+smtp.sslEnabled=false
+smtp.sslCheckCertificate=false
+smtp.starttls=true
+smtp.user=email@example.com
+smtp.pwd=password
+#smtp.from= !! DO NOT SET SMTP.FROM !!
+fromemail=email@example.com
+```
