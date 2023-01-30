@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <style>
+    html,
+    body {
+      padding: 0;
+      margin: 0;
+      font-size: 1.2em;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    .page {
+      margin: 1cm;
+      box-sizing: content-box;
+    }
+
+    .main {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .side {
+      width: 7cm;
+      display: flex;
+      flex-direction: column;
+      justify-items: center;
+      gap: 2em;
+    }
+
+    .issuer {
+      font-size: 0.8em;
+      text-align: right;
+      color: #000;
+    }
+
+    .badge {
+      text-align: right;
+    }
+
+    .badge img {
+      width: 80%;
+    }
+
+    .content {
+      margin-left: 1cm;
+      padding-left: 1cm;
+      padding-right: 1cm;
+      border-left: 0.1cm solid #12a9de;
+      flex: 1;
+      color: #333;
+    }
+
+    .content span,
+    .content .blue {
+      color: #12a9de;
+    }
+
+    .certification-title {
+      font-size: 3em;
+      font-weight: 100;
+      margin: 0;
+      padding: 0;
+      text-transform: uppercase;
+    }
+
+    .content .small {
+      font-size: 0.8em;
+      font-weight: 100;
+    }
+
+    .content .name {
+      font-size: 2em;
+      font-weight: 700;
+    }
+
+    .verification {
+      display: flex;
+      gap: 1cm;
+      align-items: center;
+      margin-top: 1cm;
+      padding-top: 1cm;
+      border-top: 0.1cm solid #12a9de;
+    }
+
+    .objective-heading {
+      color: #999;
+      text-transform: uppercase;
+    }
+
+    /* Größe des generierten QR-Codes */
+    .o_qrcode {
+      width: 25mm;
+      height: 25mm;
+      margin-right: 2em;
+      margin-top: 1em;
+      font-size: 0.1em;
+    }
+
+    /* QR-Code soll den oben definierten Container maximal ausfüllen */
+    .o_qrcode img,
+    .o_qrcode canvas {
+      width: 100%;
+      height: 100%;
+    }
+
+    .topics {
+      margin-top: 2cm;
+    }
+
+    ul {
+      display: inline-block;
+      text-align: left;
+      margin-top: 0 !important;
+      margin-bottom: 0 !important;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+  </style>
+</head>
+
+<body class="page">
+  <div class="main">
+    <div class="side">
+      <div class="badge">
+        <img src="badge.png" />
+      </div>
+      <div class="issuer">
+        IMPAVIT GmbH & Co. KG<br />
+        An der Kieskaute 27B<br />
+        55545 Bad Kreuznach<br />
+        Deutschland
+      </div>
+      <div class="issuer">
+        www.impavit.com<br />
+        +49 (0)671 88678001
+      </div>
+    </div>
+    <div class="content">
+      <h1 class="blue certification-title">Teilnahmebescheinigung</h1>
+      <p class="small blue">Dieses Dokument bestätigt, dass</p>
+      <p class="name">$fullName</p>
+      <p class="small blue">erfolgreich teilnahm an</p>
+      <h1 class="blue certification-title">$title</h1>
+      <p class="small"><span>Zeitraum:</span> $from &mdash; $to </p>
+
+      <div class="topics">
+        <h2 class="objective-heading ">Beschreibung</h2>
+        <p class="small">$description</p>
+      </div>
+
+      <div class="topics">
+        <h2 class="objective-heading ">Lernziele</h2>
+        <p class="small">$objectives</p>
+      </div>
+
+
+      <div class="verification">
+        <div class="o_qrcode">$certificateVerificationUrl</div>
+        <div class="verification_details">
+          <p class="small"><span>Aussteller:</span> $authors</p>
+          <p class="small"><span>Datum:</span> $dateCertifictation</p>
+          <p class="small"><span>Verifikation:</span> <a
+              href="$certificateVerificationUrl">$certificateVerificationUrl</a></p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</body>
+
+</html>

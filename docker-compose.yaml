@@ -28,8 +28,37 @@ services:
       - ./data/olatdata:/opt/openolat/olatdata
     networks:
       - openolat
+    depends_on:
+      - db
+
+  athena:
+    image: arachnysdocker/athenapdf-service
+    restart: always
+    security_opt:
+      - seccomp:unconfined
+    environment:
+      WEAVER_AUTH_KEY: ${ATHENA_SECRET}
+      WEAVER_ATHENA_CMD: athenapdf -S --ignore-gpu-blacklist
+      WEAVER_MAX_WORKERS: 10
+      WEAVER_MAX_CONVERSION_QUEUE: 50
+      WEAVER_WORKER_TIMEOUT: 90
+      WEAVER_CONVERSION_FALLBACK: "false"
+      GIN_MODE: debug
+    networks:
+      - openolat
+
+  nginx:
+    restart: always
+    image: nginx:latest
+    environment:
+      SERVER_NAME: ${SERVER_NAME}
+    volumes:
+      - ./nginx/gzip.conf:/etc/nginx/conf.d/gzip.conf
+      - ./nginx/vhost.conf:/etc/nginx/conf.d/default.conf
     ports:
-      - 127.0.0.1:${OLAT_PORT}:8088
+      - 127.0.0.1:${NGINX_PORT}:80
+    networks:
+      - openolat
 
 networks:
   openolat:

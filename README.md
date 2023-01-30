@@ -13,6 +13,7 @@ DB_PORT=5432
 DB_NAME=openolat
 DB_USER=openolat
 DB_PASS=openolat
+ATHENA_SECRET=geheim
 ```
 
 **tomcat/openolat.local.properties**
