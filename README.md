@@ -42,8 +42,8 @@ userdata.dir=/opt/openolat/olatdata
 1. `docker compose up -d`
 
 ## Nginx Proxy
-OLAT_PORT & ATHENA_PORT is exposed to localhost only (not accessible from outside)
-1. Replace ${OLAT_PORT} & ${ATHENA_PORT} in vhost.conf, set the server name to the domain configured in olat.local.properties and copy/link it to /etc/nginx/sites-enabled
+OLAT_PORT and ATHENA_PORT is exposed to localhost only (not accessible from outside)
+1. Replace ${OLAT_PORT} and ${ATHENA_PORT} in vhost.conf, set the server name to the domain configured in olat.local.properties and copy/link it to /etc/nginx/sites-enabled
 2. (recommended) create a ssl cert (`certbot -d <domain>`)
 3. Test nginx config (`nginx -t`)
 4. Restart nginx (`service reload nginx`)
